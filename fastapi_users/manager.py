@@ -2,7 +2,7 @@ import uuid
 from typing import Any, Dict, Generic, Optional, Union
 
 import jwt
-from fastapi import Request
+from fastapi import Request, Response
 from fastapi.security import OAuth2PasswordRequestForm
 
 from fastapi_users import exceptions, models, schemas
@@ -586,7 +586,7 @@ class BaseUserManager(Generic[models.UP, models.ID]):
         return  # pragma: no cover
 
     async def on_after_login(
-        self, user: models.UP, request: Optional[Request] = None
+        self, user: models.UP, request: Optional[Request] = None, response: Optional[Response] = None
     ) -> None:
         """
         Perform logic after user login.
